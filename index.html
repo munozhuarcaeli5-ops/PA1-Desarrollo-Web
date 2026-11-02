@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Apex Motorsport - Portal líder de noticias de deportes de motor: Fórmula 1, WRC y MotoGP. Resultados, calendario, clasificaciones y cobertura exclusiva.">
+    <title>Apex Motorsport | Portal de Noticias de Deportes de Motor</title>
+
+    <!-- Google Fonts: Rajdhani -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-dark text-light">
+
+    <!-- HEADER & NAVEGACIÓN PRINCIPAL -->
+    <header class="header-main sticky-top">
+        <!-- Barra de estado superior (Ticker deportivo) -->
+        <div class="top-status-bar py-1 d-none d-md-block">
+            <div class="container-fluid container-xl d-flex justify-content-between align-items-center">
+                <div class="status-badge d-flex align-items-center gap-2">
+                    <span class="live-dot"></span>
+                    <small class="text-uppercase fw-bold letter-spacing-1">Temporada 2026 en Vivo</small>
+                </div>
+                <div class="top-meta d-flex gap-4">
+                    <small><i class="bi bi-geo-alt-fill text-danger me-1"></i> Próxima parada: GP de Las Vegas</small>
+                    <small><i class="bi bi-broadcast text-danger me-1"></i> Transmisión Oficial F1 / WRC /
+                        MotoGP</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar principal con Bootstrap y filtros de categoría -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-surface border-bottom border-dark-subtle" id="mainNavbar">
+            <div class="container-fluid container-xl">
+                <!-- Logotipo deportivo -->
+                <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                    <span class="brand-icon">
+                        <i class="bi bi-flag-fill"></i>
+                    </span>
+                    <span class="brand-text">
+                        APEX<span class="text-racing-red">MOTOR</span>
+                    </span>
+                </a>
+
+                <!-- Botón hamburguesa responsive -->
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarMotorsport" aria-controls="navbarMotorsport" aria-expanded="false"
+                    aria-label="Alternar navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menú con filtros dinámicos -->
+                <div class="collapse navbar-collapse" id="navbarMotorsport">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-filters align-items-lg-center gap-1 gap-lg-2"
+                        id="categoryFilters">
+                        <li class="nav-item">
+                            <button class="nav-link filter-btn active" data-category="all" type="button">
+                                <i class="bi bi-grid-fill me-1"></i> Todas
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link filter-btn" data-category="f1" type="button">
+                                <i class="bi bi-speedometer2 me-1"></i> Fórmula 1
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link filter-btn" data-category="wrc" type="button">
+                                <i class="bi bi-compass-fill me-1"></i> WRC
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link filter-btn" data-category="motogp" type="button">
+                                <i class="bi bi-lightning-charge-fill me-1"></i> MotoGP
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL: MAIN + ASIDE -->
+    <div class="container-fluid container-xl my-4 my-lg-5">
+        <div class="row g-4 g-xl-5">
+
+            <!-- ÁREA PRINCIPAL: NOTICIAS (MAIN) -->
+            <main class="col-lg-8" id="mainContent">
+
+                <!-- Encabezado de la sección de noticias -->
+                <section class="section-header d-flex justify-content-between align-items-end mb-4">
+                    <div>
+                        <span class="subheading-accent">ACTUALIDAD DEL MOTOR</span>
+                        <h1 class="main-title mb-0">Últimas Noticias</h1>
+                    </div>
+                    <!-- Contador de artículos visibles -->
+                    <div class="filter-status badge bg-surface-light border border-secondary text-light px-3 py-2">
+                        Mostrando: <span id="articlesCount" class="text-white fw-bold">6</span> artículos
+                    </div>
+                </section>
+
+                <!-- Cuadrícula de Noticias (Organizada con CSS Grid puro) -->
+                <section class="news-grid" id="newsGrid" aria-label="Cuadrícula de Noticias de Deportes de Motor">
+
+                    <!-- NOTICIA 1 (Fórmula 1) -->
+                    <article class="card news-card" data-category="f1" id="article-f1-1">
+                        <div class="card-media-wrapper">
+                            <img src="assets/img/f1-news-1.jpg" class="card-img-top news-image"
+                                alt="Red Bull Racing en pista"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x500/15181f/e10600?text=F1+Red+Bull+Dominio';">
+                            <span class="category-badge badge-f1">
+                                <i class="bi bi-speedometer2 me-1"></i> F1
+                            </span>
+                            <span class="news-time">Hace 2 horas</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="news-meta mb-2">
+                                <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i> Temporada 2026</span>
+                                <span class="meta-tag"><i class="bi bi-chat-text me-1"></i> 24 comentarios</span>
+                            </div>
+                            <h2 class="card-title news-heading">
+                                Verstappen amplía su ventaja con una victoria quirúrgica bajo los reflectores
+                            </h2>
+                            <p class="card-text news-excerpt flex-grow-1">
+                                El piloto neerlandés impuso un ritmo implacable desde la pole position, gestionando la
+                                degradación de neumáticos y asegurando puntos clave para el campeonato de constructores.
+                            </p>
+                            <div
+                                class="card-footer-custom pt-3 border-top border-dark-subtle d-flex justify-content-between align-items-center">
+                                <span class="author-info">Por Redacción Apex F1</span>
+                                <a href="#article-f1-1" class="read-more-link">
+                                    Leer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- NOTICIA 2 (Fórmula 1) -->
+                    <article class="card news-card" data-category="f1" id="article-f1-2">
+                        <div class="card-media-wrapper">
+                            <img src="assets/img/f1-news-2.jpg" class="card-img-top news-image"
+                                alt="Monoplaza de Ferrari en pruebas"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x500/15181f/e10600?text=F1+Ferrari+Paquete+Aerodinamico';">
+                            <span class="category-badge badge-f1">
+                                <i class="bi bi-speedometer2 me-1"></i> F1
+                            </span>
+                            <span class="news-time">Hace 5 horas</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="news-meta mb-2">
+                                <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i> Técnica F1</span>
+                                <span class="meta-tag"><i class="bi bi-chat-text me-1"></i> 15 comentarios</span>
+                            </div>
+                            <h2 class="card-title news-heading">
+                                Ferrari estrena fondo plano con efecto suelo optimizado para altas velocidades
+                            </h2>
+                            <p class="card-text news-excerpt flex-grow-1">
+                                Maranello introduce una profunda evolución en sus conductos venturi buscando eliminar
+                                definitivamente el porpoising en curvas rápidas antes del cierre de gira.
+                            </p>
+                            <div
+                                class="card-footer-custom pt-3 border-top border-dark-subtle d-flex justify-content-between align-items-center">
+                                <span class="author-info">Por Carlos M. Rossi</span>
+                                <a href="#article-f1-2" class="read-more-link">
+                                    Leer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- NOTICIA 3 (WRC) -->
+                    <article class="card news-card" data-category="wrc" id="article-wrc-1">
+                        <div class="card-media-wrapper">
+                            <img src="assets/img/wrc-news-1.webp" class="card-img-top news-image"
+                                alt="Toyota Yaris WRC derrapando en grava"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x500/15181f/ff5500?text=WRC+Rally+de+Finlandia';">
+                            <span class="category-badge badge-wrc">
+                                <i class="bi bi-compass-fill me-1"></i> WRC
+                            </span>
+                            <span class="news-time">Hace 7 horas</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="news-meta mb-2">
+                                <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i> Rally Mundial</span>
+                                <span class="meta-tag"><i class="bi bi-chat-text me-1"></i> 8 comentarios</span>
+                            </div>
+                            <h2 class="card-title news-heading">
+                                Duelo épico en los saltos de Finlandia: Rovanperä resiste el asalto de Hyundai
+                            </h2>
+                            <p class="card-text news-excerpt flex-grow-1">
+                                En tramos de velocidad pura entre los bosques nórdicos, las milésimas de segundo
+                                marcaron la diferencia sobre la grava implacable en una de las etapas más rápidas de la
+                                historia.
+                            </p>
+                            <div
+                                class="card-footer-custom pt-3 border-top border-dark-subtle d-flex justify-content-between align-items-center">
+                                <span class="author-info">Por Markku Lehtinen</span>
+                                <a href="#article-wrc-1" class="read-more-link">
+                                    Leer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- NOTICIA 4 (WRC) -->
+                    <article class="card news-card" data-category="wrc" id="article-wrc-2">
+                        <div class="card-media-wrapper">
+                            <img src="assets/img/wrc-news-2.avif" class="card-img-top news-image"
+                                alt="Ford Puma Rally1 híbrido en asfalto"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x500/15181f/ff5500?text=WRC+Hibridos+Rally1';">
+                            <span class="category-badge badge-wrc">
+                                <i class="bi bi-compass-fill me-1"></i> WRC
+                            </span>
+                            <span class="news-time">Ayer</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="news-meta mb-2">
+                                <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i> Reglamentación FIA</span>
+                                <span class="meta-tag"><i class="bi bi-chat-text me-1"></i> 19 comentarios</span>
+                            </div>
+                            <h2 class="card-title news-heading">
+                                La FIA define el rumbo de los Rally1 híbridos: mayor potencia eléctrica para 2027
+                            </h2>
+                            <p class="card-text news-excerpt flex-grow-1">
+                                La comisión de rallyes aprueba la nueva hoja de ruta con biocombustibles 100%
+                                sostenibles y una entrega de torque instantáneo reforzada para incrementar el
+                                espectáculo.
+                            </p>
+                            <div
+                                class="card-footer-custom pt-3 border-top border-dark-subtle d-flex justify-content-between align-items-center">
+                                <span class="author-info">Por Julien Faure</span>
+                                <a href="#article-wrc-2" class="read-more-link">
+                                    Leer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- NOTICIA 5 (MotoGP) -->
+                    <article class="card news-card" data-category="motogp" id="article-motogp-1">
+                        <div class="card-media-wrapper">
+                            <img src="assets/img/motogp-news-1.webp" class="card-img-top news-image"
+                                alt="Motos de MotoGP en plena frenada"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x500/15181f/0080ff?text=MotoGP+Ducati+Sprint';">
+                            <span class="category-badge badge-motogp">
+                                <i class="bi bi-lightning-charge-fill me-1"></i> MotoGP
+                            </span>
+                            <span class="news-time">Hace 3 horas</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="news-meta mb-2">
+                                <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i> Carrera Sprint</span>
+                                <span class="meta-tag"><i class="bi bi-chat-text me-1"></i> 31 comentarios</span>
+                            </div>
+                            <h2 class="card-title news-heading">
+                                Batalla al milímetro en la última curva: Ducati sella un nuevo triplete histórico
+                            </h2>
+                            <p class="card-text news-excerpt flex-grow-1">
+                                Un adelantamiento al límite en la frenada de San Donato definió la carrera al sprint en
+                                un final no apto para cardíacos donde tres motos cruzaron la meta separadas por 8
+                                centésimas.
+                            </p>
+                            <div
+                                class="card-footer-custom pt-3 border-top border-dark-subtle d-flex justify-content-between align-items-center">
+                                <span class="author-info">Por Andrea Bardi</span>
+                                <a href="#article-motogp-1" class="read-more-link">
+                                    Leer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- NOTICIA 6 (MotoGP) -->
+                    <article class="card news-card" data-category="motogp" id="article-motogp-2">
+                        <div class="card-media-wrapper">
+                            <img src="assets/img/motogp-news-2.jpeg" class="card-img-top news-image"
+                                alt="KTM MotoGP en curva con codo en el suelo"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x500/15181f/0080ff?text=MotoGP+KTM+Evolucion';">
+                            <span class="category-badge badge-motogp">
+                                <i class="bi bi-lightning-charge-fill me-1"></i> MotoGP
+                            </span>
+                            <span class="news-time">Hace 1 día</span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="news-meta mb-2">
+                                <span class="meta-tag"><i class="bi bi-calendar3 me-1"></i> Paddock News</span>
+                                <span class="meta-tag"><i class="bi bi-chat-text me-1"></i> 12 comentarios</span>
+                            </div>
+                            <h2 class="card-title news-heading">
+                                KTM sorprende con alerones de carbono de geometría variable para circuitos rápidos
+                            </h2>
+                            <p class="card-text news-excerpt flex-grow-1">
+                                Los ingenieros austriacos continúan revolucionando la aerodinámica de dos ruedas con un
+                                carenado que genera carga vertical sin perjudicar la velocidad punta en recta.
+                            </p>
+                            <div
+                                class="card-footer-custom pt-3 border-top border-dark-subtle d-flex justify-content-between align-items-center">
+                                <span class="author-info">Por Marc Martínez</span>
+                                <a href="#article-motogp-2" class="read-more-link">
+                                    Leer más <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </section>
+
+                <!-- Mensaje de no resultados (cuando no coinciden filtros) -->
+                <div id="noResultsMessage" class="no-results-box text-center p-5 rounded d-none">
+                    <i class="bi bi-exclamation-triangle display-4 text-warning mb-3 d-block"></i>
+                    <h3 class="h4 text-white">No se encontraron noticias en esta categoría</h3>
+                    <p class="text-secondary">Intenta seleccionar otra categoría o restablece el filtro a "Todas".</p>
+                    <button class="btn btn-outline-danger mt-2"
+                        onclick="document.querySelector('[data-category=all]').click()">
+                        Ver todas las noticias
+                    </button>
+                </div>
+
+            </main>
+
+            <!-- BARRA LATERAL: ASIDE -->
+            <aside class="col-lg-4" id="sidebarContent" aria-label="Información complementaria y estadísticas">
+
+                <!-- WIDGET 1: TEMPORIZADOR DE CUENTA REGRESIVA -->
+                <section class="aside-card widget-countdown mb-4" aria-labelledby="countdownTitle">
+                    <div class="widget-header d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-stopwatch-fill text-racing-red fs-5"></i>
+                            <h3 class="widget-title mb-0" id="countdownTitle">Próximo Gran Premio</h3>
+                        </div>
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">EN
+                            VIVO</span>
+                    </div>
+
+                    <div class="widget-body">
+                        <!-- Detalles del evento -->
+                        <div class="event-details mb-3">
+                            <h4 class="event-name text-white mb-1">
+                                <i class="bi bi-flag me-1 text-danger"></i> Gran Premio de Las Vegas
+                            </h4>
+                            <p class="event-circuit text-secondary small mb-0">
+                                Circuito Callejero de Las Vegas &bull; 50 Vueltas
+                            </p>
+                        </div>
+
+                        <!-- Bloques del temporizador con cálculo matemático en JS -->
+                        <div class="countdown-grid" id="countdownTimer">
+                            <div class="countdown-box">
+                                <span class="countdown-number" id="countdownDays">00</span>
+                                <span class="countdown-label">DÍAS</span>
+                            </div>
+                            <div class="countdown-divider">:</div>
+                            <div class="countdown-box">
+                                <span class="countdown-number" id="countdownHours">00</span>
+                                <span class="countdown-label">HORAS</span>
+                            </div>
+                            <div class="countdown-divider">:</div>
+                            <div class="countdown-box">
+                                <span class="countdown-number" id="countdownMinutes">00</span>
+                                <span class="countdown-label">MIN</span>
+                            </div>
+                            <div class="countdown-divider">:</div>
+                            <div class="countdown-box">
+                                <span class="countdown-number countdown-seconds" id="countdownSeconds">00</span>
+                                <span class="countdown-label">SEG</span>
+                            </div>
+                        </div>
+
+                        <div class="countdown-footer text-center mt-3 pt-2 border-top border-dark-subtle">
+                            <small class="text-secondary">
+                                <i class="bi bi-clock-history me-1"></i> Cuenta regresiva sincronizada en tiempo real
+                            </small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- WIDGET 2: TABLA DE POSICIONES -->
+                <section class="aside-card widget-standings mb-4" aria-labelledby="standingsTitle">
+                    <div class="widget-header d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-trophy-fill text-warning fs-5"></i>
+                            <h3 class="widget-title mb-0" id="standingsTitle">Mundial de Pilotos F1</h3>
+                        </div>
+                        <span class="badge bg-dark text-white border border-secondary px-2 py-1">TOP 5</span>
+                    </div>
+
+                    <div class="widget-body">
+                        <p class="standings-subtitle text-secondary small mb-3">
+                            Clasificación oficial actualizada tras el último Gran Premio.
+                        </p>
+
+                        <!-- Tabla con filas generadas mediante JS -->
+                        <div class="table-responsive">
+                            <table class="table standings-table align-middle mb-0" id="standingsTable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center">POS</th>
+                                        <th scope="col">PILOTO</th>
+                                        <th scope="col">EQUIPO</th>
+                                        <th scope="col" class="text-end">PTS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="standingsBody">
+                                    <!-- Filas generadas dinámicamente por js/main.js -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="standings-footer text-end mt-3 pt-2 border-top border-dark-subtle">
+                            <span class="badge bg-dark-subtle text-secondary border border-dark">
+                                <i class="bi bi-check-circle-fill text-success me-1"></i> Puntos oficiales FIA
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- WIDGET 3: ACCESO RÁPIDO Y BOLETÍN -->
+                <section class="aside-card widget-newsletter" aria-labelledby="newsletterTitle">
+                    <div class="widget-header d-flex align-items-center gap-2">
+                        <i class="bi bi-envelope-paper-fill text-danger fs-5"></i>
+                        <h3 class="widget-title mb-0" id="newsletterTitle">Pit Wall Newsletter</h3>
+                    </div>
+                    <div class="widget-body">
+                        <p class="text-secondary small mb-3">
+                            Recibe telemetría, análisis técnico y reportes de carrera directo en tu bandeja de entrada
+                            antes de cada Gran Premio.
+                        </p>
+                        <form id="newsletterForm"
+                            onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte al Pit Wall de Apex Motorsport!'); this.reset();">
+                            <div class="input-group mb-2">
+                                <input type="email" class="form-control newsletter-input"
+                                    placeholder="tu.correo@motor.com" required aria-label="Correo electrónico">
+                                <button class="btn btn-racing-red" type="submit">
+                                    <i class="bi bi-send-fill"></i>
+                                </button>
+                            </div>
+                            <small class="text-secondary" style="font-size: 0.75rem;">Sin spam. Desuscríbete cuando
+                                desees.</small>
+                        </form>
+                    </div>
+                </section>
+
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- FOOTER SEMÁNTICO -->
+    <footer class="footer-main mt-auto border-top border-dark-subtle bg-surface">
+        <div class="container-fluid container-xl py-5">
+            <div class="row g-4">
+                <!-- Columna 1: Marca y descripción -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand d-flex align-items-center gap-2 mb-3">
+                        <span class="brand-icon"><i class="bi bi-flag-fill"></i></span>
+                        <span class="brand-text fs-4">APEX<span class="text-racing-red">MOTOR</span></span>
+                    </div>
+                    <p class="text-secondary small mb-3">
+                        Portal integral de información deportiva especializado en Fórmula 1, Campeonato Mundial de
+                        Rallyes (WRC) y el Campeonato Mundial de Motociclismo (MotoGP).
+                    </p>
+                    <div class="social-links d-flex gap-2">
+                        <a href="#" class="social-icon" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-icon" aria-label="Discord"><i class="bi bi-discord"></i></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Categorías -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h4 class="footer-heading">Categorías</h4>
+                    <ul class="footer-links list-unstyled mb-0">
+                        <li><a href="#"
+                                onclick="document.querySelector('[data-category=f1]').click(); return false;">Fórmula
+                                1</a></li>
+                        <li><a href="#"
+                                onclick="document.querySelector('[data-category=wrc]').click(); return false;">WRC
+                                Rally</a></li>
+                        <li><a href="#"
+                                onclick="document.querySelector('[data-category=motogp]').click(); return false;">MotoGP</a>
+                        </li>
+                        <li><a href="#"
+                                onclick="document.querySelector('[data-category=all]').click(); return false;">Todas las
+                                Series</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Información Académica -->
+                <div class="col-lg-3 col-md-6 col-6">
+                    <h4 class="footer-heading">Proyecto</h4>
+                    <ul class="footer-links list-unstyled mb-0 text-secondary small">
+                        <li>Evaluación Académica Frontend</li>
+                        <li>Tecnologías: HTML5, CSS3, JS &amp; BS5</li>
+                        <li>Arquitectura Modular Vanilla</li>
+                        <li>Diseño Totalmente Adaptativo</li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Estado de Sistemas -->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="footer-heading">Estado en Pista</h4>
+                    <div class="circuit-status-box p-3 rounded bg-dark border border-secondary-subtle">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="status-indicator-green"></span>
+                            <span class="small text-white fw-bold">Bandera Verde</span>
+                        </div>
+                        <p class="text-secondary small mb-0">
+                            Pista seca. Sesión de cronometraje activa en tiempo real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de copyright inferior -->
+            <div
+                class="footer-bottom mt-5 pt-4 border-top border-dark-subtle d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <small class="text-secondary">
+                    &copy; 2026 Apex Motorsport Portal. Proyecto académico con fines educativos. Todos los derechos
+                    reservados.
+                </small>
+                <small class="text-secondary">
+                    Desarrollado con HTML5 semántico, CSS Grid &amp; Vanilla JavaScript
+                </small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS CDN (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Script personalizado con la lógica DOM -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

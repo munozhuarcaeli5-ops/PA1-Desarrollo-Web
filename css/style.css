@@ -1,0 +1,688 @@
+/* Estilos principales - Apex Motorsport */
+
+/* Variables y tema */
+:root {
+    --bg-dark-base: #0b0d10;
+    --bg-surface: #12151b;
+    --bg-card: #181d26;
+    --bg-card-hover: #1f2532;
+    --bg-surface-light: #232936;
+
+    --racing-red: #e10600;
+    --racing-red-glow: rgba(225, 6, 0, 0.35);
+    --racing-orange: #ff5500;
+    --racing-blue: #0080ff;
+    --racing-gold: #ffb800;
+
+    --border-color: #262c38;
+    --border-color-hover: #e10600;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+
+    --font-heading: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --text-primary: #ffffff;
+    --text-secondary: #9aa3b0;
+    --text-muted: #626d7f;
+
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base y tipografía */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark-base) !important;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--racing-red);
+}
+
+/* Utilidades */
+.text-racing-red {
+    color: var(--racing-red) !important;
+}
+
+.bg-surface {
+    background-color: var(--bg-surface) !important;
+}
+
+.bg-surface-light {
+    background-color: var(--bg-surface-light) !important;
+}
+
+.letter-spacing-1 {
+    letter-spacing: 1.5px;
+}
+
+/* Header y navegación */
+.header-main {
+    background-color: rgba(18, 21, 27, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    z-index: 1030;
+}
+
+/* Ticker superior */
+.top-status-bar {
+    background-color: #08090c;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--racing-red);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--racing-red);
+    animation: livePulse 1.6s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 0.4;
+    }
+}
+
+/* Logo */
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--racing-red), #990000);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1.1rem;
+    box-shadow: 0 0 12px var(--racing-red-glow);
+}
+
+.brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* Filtros navbar */
+.nav-filters .filter-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 0.45rem 1rem;
+    border-radius: 6px;
+    transition: all var(--transition-smooth);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.nav-filters .filter-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-subtle);
+    transform: translateY(-1px);
+}
+
+.nav-filters .filter-btn.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--racing-red), #b30000);
+    border-color: var(--racing-red);
+    box-shadow: 0 4px 15px var(--racing-red-glow);
+}
+
+/* Sección de noticias */
+.subheading-accent {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--racing-red);
+    letter-spacing: 2px;
+    position: relative;
+    padding-left: 18px;
+}
+
+.subheading-accent::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 3px;
+    background-color: var(--racing-red);
+}
+
+.main-title {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* Contador de artículos */
+.filter-status {
+    color: #ffffff !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* Grid de noticias */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    width: 100%;
+}
+
+@media (max-width: 767.98px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+/* Tarjetas de noticias */
+.news-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform var(--transition-smooth),
+                box-shadow var(--transition-smooth),
+                border-color var(--transition-smooth),
+                opacity var(--transition-smooth);
+    position: relative;
+    opacity: 1;
+}
+
+.news-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    background-color: var(--bg-card-hover);
+    border-color: var(--racing-red);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.75),
+                0 0 20px var(--racing-red-glow);
+}
+
+/* Imagen y zoom */
+.card-media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #0e1116;
+    overflow: hidden;
+}
+
+.news-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.news-card:hover .news-image {
+    transform: scale(1.08);
+}
+
+/* Badges de categoría */
+.category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.badge-f1 {
+    background: linear-gradient(135deg, var(--racing-red), #990000);
+}
+
+.badge-wrc {
+    background: linear-gradient(135deg, var(--racing-orange), #b83d00);
+}
+
+.badge-motogp {
+    background: linear-gradient(135deg, var(--racing-blue), #004fb3);
+}
+
+.news-time {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    color: #e0e0e0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    z-index: 2;
+}
+
+/* Contenido de tarjeta */
+.news-card .card-body {
+    padding: 1.35rem;
+    background: transparent;
+}
+
+.news-meta {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 12px;
+}
+
+.meta-tag {
+    display: inline-flex;
+    align-items: center;
+}
+
+.news-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+    transition: color var(--transition-fast);
+}
+
+.news-card:hover .news-heading {
+    color: #ff3b30;
+}
+
+.news-excerpt {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+}
+
+.author-info {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.read-more-link {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--racing-red);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.read-more-link i {
+    transition: transform var(--transition-fast);
+}
+
+.news-card:hover .read-more-link {
+    color: #ffffff;
+}
+
+.news-card:hover .read-more-link i {
+    transform: translateX(4px);
+}
+
+/* Animación fade-in */
+.card-fade-in {
+    animation: fadeInCard 0.4s ease forwards;
+}
+
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.no-results-box {
+    background-color: var(--bg-card);
+    border: 1px dashed var(--border-color);
+}
+
+/* Sidebar y widgets */
+.aside-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.35rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.aside-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--racing-red);
+}
+
+.widget-header {
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.widget-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Widget: Countdown */
+.event-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.countdown-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0b0d11;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.85rem 0.5rem;
+}
+
+.countdown-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.1rem;
+}
+
+.countdown-number {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #ffffff;
+    font-variant-numeric: tabular-nums;
+}
+
+.countdown-seconds {
+    color: var(--racing-red);
+    text-shadow: 0 0 10px var(--racing-red-glow);
+}
+
+.countdown-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.countdown-divider {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding-bottom: 12px;
+}
+
+/* Widget: Tabla de posiciones */
+.standings-table {
+    background-color: transparent !important;
+    --bs-table-bg: transparent;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    font-size: 0.88rem;
+}
+
+.standings-table thead th {
+    background-color: #0e1117;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    border-bottom: none;
+    padding: 0.6rem 0.5rem;
+}
+
+.standings-table tbody tr {
+    background-color: #12161f;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.standings-table tbody tr:hover {
+    background-color: var(--bg-surface-light);
+    transform: translateX(4px);
+}
+
+.standings-table tbody td {
+    border: none;
+    padding: 0.65rem 0.5rem;
+    color: var(--text-primary);
+}
+
+/* Resaltado P1 */
+.standings-row-p1 {
+    background: linear-gradient(90deg, rgba(255, 184, 0, 0.12), rgba(24, 29, 38, 0.8)) !important;
+    border-left: 3px solid var(--racing-gold) !important;
+}
+
+.standings-row-p1 .driver-name {
+    color: #fff;
+    font-weight: 700;
+}
+
+.pos-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 0.85rem;
+    background-color: #232936;
+    color: var(--text-secondary);
+}
+
+.pos-p1 {
+    background: linear-gradient(135deg, #ffb800, #b38000);
+    color: #000000;
+    font-weight: 900;
+    box-shadow: 0 0 8px rgba(255, 184, 0, 0.4);
+}
+
+.pos-p2 {
+    background-color: #a0aab8;
+    color: #000;
+}
+
+.pos-p3 {
+    background-color: #cd7f32;
+    color: #fff;
+}
+
+.driver-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.driver-name {
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.driver-country {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.team-name {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.points-pill {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+/* Widget: Newsletter */
+.newsletter-input {
+    background-color: #0b0d11;
+    border: 1px solid var(--border-color);
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+.newsletter-input:focus {
+    background-color: #0f1218;
+    border-color: var(--racing-red);
+    box-shadow: 0 0 0 0.25rem var(--racing-red-glow);
+    color: #ffffff;
+}
+
+.newsletter-input::placeholder {
+    color: var(--text-muted);
+}
+
+.btn-racing-red {
+    background-color: var(--racing-red);
+    border-color: var(--racing-red);
+    color: #ffffff;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.btn-racing-red:hover {
+    background-color: #b80500;
+    border-color: #b80500;
+    color: #ffffff;
+    box-shadow: 0 0 12px var(--racing-red-glow);
+}
+
+/* Footer */
+.footer-main {
+    background-color: #090a0d !important;
+}
+
+.footer-heading {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-links li {
+    margin-bottom: 0.45rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    transition: all var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--racing-red);
+    padding-left: 4px;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+.social-icon:hover {
+    background-color: var(--racing-red);
+    border-color: var(--racing-red);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.status-indicator-green {
+    width: 10px;
+    height: 10px;
+    background-color: #00d26a;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #00d26a;
+}
